@@ -3,8 +3,13 @@
     <thead>
       <tr class="table">
         <th scope="col" style="width: 3%">
-          <a class="badge bg-primary btn p-0 fs-2" role="button" data-bs-toggle="collapse"
-            data-bs-target="#accordionInputItem">+</a>
+          <a
+            class="badge bg-primary btn p-0 fs-2"
+            role="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#accordionInputItem"
+            >+</a
+          >
         </th>
         <th scope="col">Date</th>
         <th scope="col">Title</th>
@@ -15,30 +20,60 @@
       </tr>
     </thead>
     <tbody>
-      <tr style="vertical-align: baseline" v-for="(item, rowCount) in tableContent" :key="item.pk">
+      <tr
+        style="vertical-align: baseline"
+        v-for="(item, rowCount) in tableContent"
+        :key="item.pk"
+      >
         <th scope="row">{{ ++rowCount }}</th>
-        <td>{{ item.date }}</td>
+        <td>{{ item.date.slice(5) }}</td>
         <td class="text-break">{{ item?.title }}</td>
         <td>{{ item?.price }}</td>
         <td class="d-none d-md-table-cell">{{ item?.category?.title }}</td>
         <td class="d-none d-xl-table-cell">{{ item?.store?.title }}</td>
         <td>
           <div class="btn-group btn-group-sm" role="group">
-            <button @click="deleteTableItem(item.pk)" type="button" class="btn btn-outline-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
-                viewBox="0 0 16 16">
+            <button
+              @click="pkToDelete = item.pk"
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#modalDelete"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-trash"
+                viewBox="0 0 16 16"
+              >
                 <path
-                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"
+                />
                 <path
-                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"
+                />
               </svg>
             </button>
-            <button @click="modifyTableItem(item)" type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-              data-bs-target="#modal">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil"
-                viewBox="0 0 16 16">
+            <button
+              @click="modifyTableItem(item)"
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#modalModify"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-pencil"
+                viewBox="0 0 16 16"
+              >
                 <path
-                  d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                  d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
+                />
               </svg>
             </button>
           </div>
@@ -47,6 +82,33 @@
     </tbody>
   </table>
   <modify-item-form :modItem="modItem" />
+
+  <div class="modal fade" id="modalDelete" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p class="d-flex justify-content-center fs-1 fw-medium">Are you sure?</p>
+          <div class="d-flex justify-content-between">
+            <button
+              @click="deleteTableItem(pkToDelete)"
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-dismiss="modal"
+            >
+              Confirm
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-dismiss="modal"
+            >
+              Decline
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import ModifyItemForm from "@/components/ModifyItemForm";
@@ -58,6 +120,7 @@ export default {
   },
   data() {
     return {
+      pkToDelete: "",
       rowCount: 0,
       modItem: {
         pk: "",
@@ -75,11 +138,11 @@ export default {
   },
   props: {
     tableContent: {
-      type: Array
+      type: Array,
     },
   },
   methods: {
-    ...mapActions('api', ['deleteTableItem']),
+    ...mapActions("api", ["deleteTableItem"]),
     modifyTableItem(item) {
       this.modItem.pk = item.pk;
       this.modItem.date = item.date;
