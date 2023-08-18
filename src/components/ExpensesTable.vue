@@ -11,11 +11,11 @@
             >+</a
           >
         </th>
-        <th scope="col">Date</th>
+        <th class="d-none d-md-table-cell" scope="col" style="width: 12%">Date</th>
         <th scope="col">Title</th>
         <th scope="col" style="width: 5%">Price</th>
         <th class="d-none d-md-table-cell" scope="col">Category</th>
-        <th class="d-none d-xl-table-cell" scope="col">Store</th>
+        <th class="d-none d-md-table-cell" scope="col">Store</th>
         <th scope="col" style="width: 2%">Manage</th>
       </tr>
     </thead>
@@ -26,11 +26,11 @@
         :key="item.pk"
       >
         <th scope="row">{{ ++rowCount }}</th>
-        <td>{{ item.date.slice(5) }}</td>
+        <td class="d-none d-md-table-cell">{{ item.date }}</td>
         <td class="text-break">{{ item?.title }}</td>
         <td>{{ item?.price }}</td>
         <td class="d-none d-md-table-cell">{{ item?.category?.title }}</td>
-        <td class="d-none d-xl-table-cell">{{ item?.store?.title }}</td>
+        <td class="d-none d-md-table-cell">{{ item?.store?.title }}</td>
         <td>
           <div class="btn-group btn-group-sm" role="group">
             <button

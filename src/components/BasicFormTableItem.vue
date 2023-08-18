@@ -7,18 +7,21 @@
           type="date"
           placeholder="Date"
           class="form-control mb-4"
+          :class="tableItem.date ? 'is-valid': 'is-invalid'"
         />
         <input
           v-model="tableItem.title"
           type="txt"
           placeholder="Title"
           class="form-control mb-4"
+          :class="tableItem.title ? 'is-valid': 'is-invalid'"
         />
         <input
           v-model="tableItem.price"
           type="txt"
           placeholder="Price"
           class="form-control"
+          :class="tableItem.price && !isNaN(tableItem.price) ? 'is-valid': 'is-invalid'"
         />
       </div>
       <div class="col">
@@ -28,6 +31,7 @@
           list="categoryOptions"
           placeholder="Category"
           class="form-control mb-4"
+          :class="tableItem.category.title ? 'is-valid': 'is-invalid'"
         />
         <datalist id="categoryOptions">
           <option v-for="item in categories" :value="item.title"></option>
@@ -39,6 +43,7 @@
           list="storeOptions"
           placeholder="Store"
           class="form-control"
+          :class="tableItem.store.title ? 'is-valid': 'is-invalid'"
         />
         <datalist id="storeOptions">
           <option v-for="item in stores" :value="item.title"></option>

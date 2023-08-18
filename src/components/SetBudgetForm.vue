@@ -5,6 +5,7 @@
       type="txt"
       placeholder="Budget"
       class="form-control"
+      :class="isDisabled ? 'is-invalid': 'is-valid'"
     />
     <div v-if="isDisabled" class="form-text mt-3 ms-1">Numbers only</div>
     <div class="d-flex justify-content-end">
