@@ -6,7 +6,7 @@ export default {
     return {
       token: localStorage.getItem("token") ? localStorage.getItem("token") : "",
       isAuthenticated: localStorage.getItem("token") ? true : false,
-      invalidData: false,
+      invalidData: '',
     };
   },
   getters: {
@@ -19,7 +19,7 @@ export default {
   },
   mutations: {
     mutateInvalidData(state) {
-      state.invalidData = true
+      state.invalidData = 'is-invalid'
     }
   },
   actions: {
