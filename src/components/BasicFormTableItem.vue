@@ -90,12 +90,19 @@ export default {
     },
   },
   watch: {
-    "tableItem.price"(price) {
-      if (isNaN(price) || !price) {
-        this.isDisabled = true;
-      } else {
-        this.isDisabled = false;
-      }
+    tableItem: {
+      handler(item) {
+        this.isDisabled =
+          isNaN(item?.price) ||
+          !item?.price ||
+          !item?.category?.title ||
+          !item?.store?.title ||
+          !item?.date ||
+          !item?.title
+            ? true
+            : false;
+      },
+      deep: true,
     },
   },
 };
