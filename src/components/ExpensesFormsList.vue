@@ -17,29 +17,14 @@
       </div>
     </div>
   </div>
-  <div class="accordion accordion-flush">
-    <div class="accordion-item">
-      <div id="accordionSetBudget" class="accordion-collapse collapse">
-        <div class="accordion-body">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <set-budget-form />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 <script>
 import BasicFormTableItem from "@/components/BasicFormTableItem";
-import SetBudgetForm from "@/components/SetBudgetForm";
 import { mapActions } from "vuex";
 
 export default {
   components: {
     BasicFormTableItem,
-    SetBudgetForm,
   },
   data() {
     return {
@@ -52,6 +37,7 @@ export default {
         store: {
           title: "",
         },
+        date: ""
       },
     };
   },
