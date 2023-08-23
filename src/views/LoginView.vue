@@ -52,8 +52,8 @@ export default {
   name: "LoginView",
   data() {
     return {
-      username: "",
-      password: "",
+      username: "demo",
+      password: "demo",
     };
   },
   computed: mapState("auth", ["invalidData"]),
