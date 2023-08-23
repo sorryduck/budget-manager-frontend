@@ -52,6 +52,7 @@ export default {
         store: {
           title: "",
         },
+        date: ""
       },
     };
   },

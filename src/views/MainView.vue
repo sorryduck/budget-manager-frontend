@@ -7,7 +7,7 @@
     <user-data-bar />
   </div>
 
-  <div class="container shadow rounded mt-4 p-4">
+  <div class="container shadow rounded mt-4 p-0">
     <ul class="nav nav-tabs">
       <li class="nav-item">
         <a
@@ -28,15 +28,6 @@
           >Stats</a
         >
       </li>
-      <!-- <li class="nav-item">
-        <a
-          class="nav-link"
-          :class="{ active: mainComponent === 'CategoriesStoreComponent' }"
-          @click="mainComponent = 'CategoriesStoreComponent'"
-          href="#"
-          >Categories & Stores</a
-        >
-      </li> -->
     </ul>
 
     <div class="container shadow-sm border">

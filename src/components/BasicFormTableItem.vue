@@ -4,7 +4,7 @@
       <div class="col mb-4">
         <flat-pickr
           v-model="tableItem.date"
-          type="date"
+          type="txt"
           placeholder="Date"
           class="form-control mb-4"
           :class="tableItem.date ? 'is-valid': 'is-invalid'"

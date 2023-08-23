@@ -2,7 +2,7 @@
   <nav class="navbar">
     <div class="container-fluid">
       <div class="row">
-        <a class="navbar-brand font-monospace" href="#"
+        <a class="navbar-brand" href="#"
           >{{ headTitle }}</a
         >
       </div>

@@ -22,27 +22,26 @@ export default {
       state.tableData = tableData;
     },
     mutateStatsData(state, data) {
-      state.chartCategory.chartOptions.xaxis.categories = data.category_data.categories;
+      state.chartCategory.chartOptions.xaxis.categories =
+        data.category_data.categories;
       state.chartCategory.series[0].data = data.category_data.values;
 
       state.chartStore.chartOptions.xaxis.categories = data.store_data.stores;
       state.chartStore.series[0].data = data.store_data.values;
 
-      state.chartExpense.chartOptions.xaxis.categories = data.expenses_data.titles;
+      state.chartExpense.chartOptions.xaxis.categories =
+        data.expenses_data.titles;
       state.chartExpense.series[0].data = data.expenses_data.values;
     },
   },
   actions: {
     async fetchTableData(context, page) {
       try {
-        const response = await axios.get(
-          "/api/v1/table-data/",
-          {
-            params: {
-              page: page,
-            },
-          }
-        );
+        const response = await axios.get("/api/v1/table-data/", {
+          params: {
+            page: page,
+          },
+        });
 
         context.commit("mutateTableData", response?.data);
       } catch (e) {
@@ -51,9 +50,7 @@ export default {
     },
     async fetchUserData(context) {
       try {
-        const response = await axios.get(
-          "/api/v1/user-data/"
-        );
+        const response = await axios.get("/api/v1/user-data/");
 
         context.commit("mutateUserData", response?.data);
       } catch (e) {
@@ -102,12 +99,14 @@ export default {
         console.log(e);
       }
     },
-    async fetchStatsData(context) {
+    async fetchStatsData(context, payload) {
       try {
-        const response = await axios.get(
-          "/api/v1/stats-data/"
-        );
-
+        const response = await axios.get("/api/v1/stats-data/", {
+          params: {
+            "start_date": payload?.startDate,
+            "end_date": payload?.endDate
+          },
+        });
         context.commit("mutateStatsData", response?.data);
       } catch (e) {
         console.log(e);
