@@ -95,6 +95,7 @@ export default {
         await axios.patch("/api/v1/table-data/", {
           budget: budget,
         });
+        context.dispatch("fetchUserData")
       } catch (e) {
         console.log(e);
       }

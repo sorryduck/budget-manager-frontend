@@ -92,14 +92,14 @@
             <button
               @click="deleteTableItem(pkToDelete)"
               type="button"
-              class="btn btn-outline-primary"
+              class="btn btn-outline-success"
               data-bs-dismiss="modal"
             >
               Confirm
             </button>
             <button
               type="button"
-              class="btn btn-outline-primary"
+              class="btn btn-outline-danger"
               data-bs-dismiss="modal"
             >
               Decline
