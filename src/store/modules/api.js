@@ -59,6 +59,7 @@ export default {
     },
     async addTableItem(context, item) {
       try {
+        item.price = parseFloat(item.price).toFixed(2)
         await axios.post("/api/v1/table-data/", item);
 
         context.dispatch("fetchTableData");
