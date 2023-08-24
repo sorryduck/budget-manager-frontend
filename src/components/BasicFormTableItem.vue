@@ -87,6 +87,7 @@ export default {
     tableItem: {
       type: Object,
       required: true,
+      default: () => {},
     },
     buttonAttrs: {
       type: Object,
